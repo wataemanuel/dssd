@@ -1,0 +1,28 @@
+body, html {
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size: cover;
+}
+
+.menu {
+ float:left;
+ left:50%;
+ list-style-type:none;
+ margin:0 auto;
+ padding:0;
+ position:relative;
+}
+
+.menu li {
+ float:left;
+ position:relative;
+ right:50%;
+}
+h1{
+	color:#ffffff
+}
+#index{
+	color:#DC143C
+}
