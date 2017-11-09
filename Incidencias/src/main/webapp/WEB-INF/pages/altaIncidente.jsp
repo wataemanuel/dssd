@@ -49,8 +49,8 @@
  				<strong>Error!</strong> Campo obligatorio.
 			</div>
 			<div class="form-group">
-				<form:label class="col-sm-2 control-label" path="descripcion">Descripcion</form:label>	
-				<form:input path="descripcion" size="30" />
+				<form:label class="col-sm-2 control-label" path="descripcion">Descripción del incidente</form:label>	
+				<form:input path="descripcion" size="80" />
 				<form:errors path="descripcion" cssClass="error"/>
 			</div>
 			<div id="errorD" class="alert alert-danger">
