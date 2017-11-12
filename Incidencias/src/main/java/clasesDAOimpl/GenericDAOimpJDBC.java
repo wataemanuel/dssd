@@ -1,4 +1,4 @@
-package clasesDAOimpJDBC;
+package clasesDAOimpl;
 
 import java.io.Serializable;
 import java.util.List;

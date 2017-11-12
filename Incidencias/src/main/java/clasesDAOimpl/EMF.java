@@ -1,4 +1,4 @@
-package clasesDAOimpJDBC;
+package clasesDAOimpl;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

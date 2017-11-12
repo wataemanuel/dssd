@@ -1,4 +1,4 @@
-package clasesDAOimpJDBC;
+package clasesDAOimpl;
 
 import org.springframework.stereotype.Repository;
 

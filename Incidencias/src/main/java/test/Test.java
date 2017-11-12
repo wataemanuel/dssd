@@ -1,6 +1,6 @@
 package test;
 
-import clasesDAOimpJDBC.UsuarioDAOimpJDBC;
+import clasesDAOimpl.UsuarioDAOimpJDBC;
 import misClases.Usuario;
 
 public class Test {

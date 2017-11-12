@@ -1,4 +1,4 @@
-package clasesDAOimpJDBC;
+package clasesDAOimpl;
 
 import clasesDAO.IncidenteDAO;
 import clasesDAO.TipoIncidenteDAO;
