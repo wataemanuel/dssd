@@ -10,7 +10,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Se especifican componentes del MVC como Controller -->
-    <context:component-scan base-package="clasesDAO, controllers, clasesDAOimpJDBC"/>
+    <context:component-scan base-package="clasesDAO, controllers, clasesDAOimpl"/>
     
     <!-- Ubicación de archivos properties -->
     <context:property-placeholder location="classpath:hibernate.properties"/>
