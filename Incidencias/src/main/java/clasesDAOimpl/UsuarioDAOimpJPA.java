@@ -8,9 +8,9 @@ import misClases.Usuario;
 import clasesDAO.UsuarioDAO;
 
 @Repository
-public class UsuarioDAOimpJDBC extends GenericDAOimpJDBC<Usuario> implements UsuarioDAO {
+public class UsuarioDAOimpJPA extends GenericDAOimpJPA<Usuario> implements UsuarioDAO {
 
-	public UsuarioDAOimpJDBC(){
+	public UsuarioDAOimpJPA(){
 		super(Usuario.class);
 	}
 	

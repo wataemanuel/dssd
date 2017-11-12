@@ -6,9 +6,9 @@ import clasesDAO.ObjetoIndDAO;
 import misClases.ObjetoInd;
 
 @Repository
-public class ObjetoIndDAOimpJDBC extends GenericDAOimpJDBC<ObjetoInd> implements ObjetoIndDAO {
+public class ObjetoIndDAOimpJPA extends GenericDAOimpJPA<ObjetoInd> implements ObjetoIndDAO {
 
-	public ObjetoIndDAOimpJDBC() {
+	public ObjetoIndDAOimpJPA() {
 		super(ObjetoInd.class);
 	}
 }

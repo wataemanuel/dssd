@@ -11,15 +11,15 @@ public class FactoryDAO {
 	}
 	
 	public static UsuarioDAO getUsuarioDAO() {
-		return new UsuarioDAOimpJDBC();
+		return new UsuarioDAOimpJPA();
 	}
 	
 	public static IncidenteDAO getIncidenteDAO() {
-		return new IncidenteDAOimpJDBC();
+		return new IncidenteDAOimpJPA();
 	}
 	
 	public static TipoIncidenteDAO getTipoIncidenteDAO() {
-		return new TipoIncidenteDAOimpJDBC();
+		return new TipoIncidenteDAOimpJPA();
 	}
 	
 	

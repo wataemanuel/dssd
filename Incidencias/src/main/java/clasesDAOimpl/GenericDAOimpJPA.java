@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import clasesDAO.GenericDAO;
 
 @Transactional
-public abstract class GenericDAOimpJDBC<T> implements GenericDAO<T> {
+public abstract class GenericDAOimpJPA<T> implements GenericDAO<T> {
 	protected Class<T> persistentClass;
 	
 	public Class<T> getPersistentClass() {
@@ -33,7 +33,7 @@ public abstract class GenericDAOimpJDBC<T> implements GenericDAO<T> {
 	return entityManager;
 	}
 	
-	public GenericDAOimpJDBC(Class<T> persist){
+	public GenericDAOimpJPA(Class<T> persist){
 		this.persistentClass = persist;
 	}
 

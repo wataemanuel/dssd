@@ -6,9 +6,9 @@ import clasesDAO.TipoIncidenteDAO;
 import misClases.TipoIncidente;
 
 @Repository
-public class TipoIncidenteDAOimpJDBC extends GenericDAOimpJDBC<TipoIncidente> implements TipoIncidenteDAO {
+public class TipoIncidenteDAOimpJPA extends GenericDAOimpJPA<TipoIncidente> implements TipoIncidenteDAO {
 
-	public TipoIncidenteDAOimpJDBC() {
+	public TipoIncidenteDAOimpJPA() {
 		super(TipoIncidente.class);
 	}
 }

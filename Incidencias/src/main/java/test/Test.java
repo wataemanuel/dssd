@@ -1,6 +1,6 @@
 package test;
 
-import clasesDAOimpl.UsuarioDAOimpJDBC;
+import clasesDAOimpl.UsuarioDAOimpJPA;
 import misClases.Usuario;
 
 public class Test {
@@ -17,7 +17,7 @@ public class Test {
 	public static void main(String[] args) {
 		
 		Usuario u1 = crearUsuario();
-		UsuarioDAOimpJDBC uu1 = new UsuarioDAOimpJDBC();
+		UsuarioDAOimpJPA uu1 = new UsuarioDAOimpJPA();
 		uu1.persistir(u1);
 		
 	}
