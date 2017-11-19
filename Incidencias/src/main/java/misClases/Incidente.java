@@ -19,15 +19,16 @@ public class Incidente {
 	private Date fechaIncidente;
 	private Date fechaExpediente;
 	private String descripcion;
-	private String resultado;
 	@ManyToOne(optional = false)
 	@JoinColumn(name="tipoIncidente_id")
 	private TipoIncidente tipoIncidente;
-	//estado?
-	/*@ManyToOne(optional = false)
+	@ManyToOne(optional = false)
+	@JoinColumn(name="estado_id")
+	private Estado estado;
+	@ManyToOne(optional = false)
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
-	@OneToMany(fetch = FetchType.EAGER)
+	/*@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="incidente_id")
 	private List<ObjetoInd> objetos;*/
 	
@@ -35,9 +36,9 @@ public class Incidente {
 		
 	}
 	
-	public Incidente(Date fechaIncidente, String descripcion) {
+	public Incidente(Date fechaIncidente, String descripcion, Estado estado) {
 		this.setFechaExpediente(new Date());
-		this.setResultado(null);
+		this.setEstado(estado);
 		this.setFechaIncidente(fechaIncidente);
 		this.setDescripcion(descripcion);
 	}
@@ -66,19 +67,13 @@ public class Incidente {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public String getResultado() {
-		return resultado;
-	}
-	public void setResultado(String resultado) {
-		this.resultado = resultado;
-	}
-	/*public Usuario getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public List<ObjetoInd> getObjetos() {
+	/*public List<ObjetoInd> getObjetos() {
 		return objetos;
 	}
 	public void setObjetos(List<ObjetoInd> objetos) {
@@ -89,5 +84,11 @@ public class Incidente {
 	}
 	public void setTipoIncidente(TipoIncidente tipoIncidente) {
 		this.tipoIncidente = tipoIncidente;
+	}
+	public Estado getEstado() {
+		return estado;
+	}
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 }

@@ -76,8 +76,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping("home")
-	public ModelAndView index(Map<String, Object> model) {
-		return new ModelAndView("forward:/");
+	public ModelAndView home(Map<String, Object> model, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			return new ModelAndView("redirect:backendUsuario");
+		}
+		else {
+			return new ModelAndView("forward:/index.jsp");
+		}
 	}
 
 }

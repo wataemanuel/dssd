@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import misClases.Usuario;
 import misClases.Incidente;
 import misClases.TipoIncidente;
 
@@ -13,8 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import clasesDAO.EstadoDAO;
 import clasesDAO.IncidenteDAO;
 import clasesDAO.TipoIncidenteDAO;
+import clasesDAO.UsuarioDAO;
 
 @Controller
 public class IncidenteController {
@@ -24,6 +29,12 @@ public class IncidenteController {
 	
 	@Autowired
 	private TipoIncidenteDAO tipoIncidenteDAO;
+	
+	@Autowired
+	private EstadoDAO estadoDAO;
+	
+	@Autowired
+	private UsuarioDAO usuarioDAO;
 
 	public IncidenteDAO getIncidenteDAO() {
 		return incidenteDAO;
@@ -43,17 +54,20 @@ public class IncidenteController {
     }
 	
 	@RequestMapping("guardarIncidente")
-    public ModelAndView guardarIncidente(@ModelAttribute Incidente incidenteForm) {
+    public ModelAndView guardarIncidente(@ModelAttribute Incidente incidenteForm, HttpServletRequest request) {
     	// Si el id es 0 entonces se crea, de lo contrario se actualiza
         if(incidenteForm.getId() == null ){ 
         	incidenteForm.setFechaExpediente(new Date());
-        	incidenteForm.setResultado("En proceso");
+        	Usuario usr = (Usuario) request.getSession(true).getAttribute("usuario");
+    		usr = usuarioDAO.recuperar(usr.getId());
+    		incidenteForm.setUsuario(usr);
+        	incidenteForm.setEstado(estadoDAO.recuperar(new Long(1)));
         	incidenteDAO.persistir(incidenteForm);
         } else {
         	incidenteDAO.actualizar(incidenteForm);
         }
         //return new ModelAndView("redirect:listaUsuarios");
-        return new ModelAndView("forward:/");
+        return new ModelAndView("redirect:backendUsuario");
     }
 	
 }

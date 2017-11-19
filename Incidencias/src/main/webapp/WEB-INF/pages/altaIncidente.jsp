@@ -84,7 +84,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	 $(function() {
-	    	$("#datepicker").datepicker();
+	    	$("#datepicker").datepicker({maxDate: 0});
 	    });
 	$("#errorF").hide();
 	$("#errorD").hide();
@@ -108,7 +108,7 @@ $(document).ready(function(){
 	    return true;  
 	});
 	$("#incidenteRegisterForm").submit(function () {  
-	    if($("#tipoIncidente").val().length < 1) {  
+	    if($("#tipoInci").val() == 0) {  
 	    	$("#errorT").show(); 
 	    	$("#errorT").hide(7000);
 	    	$("#errorT").hide("fast");
