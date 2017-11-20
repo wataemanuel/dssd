@@ -13,8 +13,8 @@
 <link href="resources/bootstrap/css/estilo.css" rel="stylesheet">
 <!-- Bootstrap JS -->
 <script src="resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="resources/js/jquery-ui.js"></script>
+<link rel="stylesheet" href="resources/js/jquery-ui.css">
 
 <title>SSA - Incidente</title>
 </head>
