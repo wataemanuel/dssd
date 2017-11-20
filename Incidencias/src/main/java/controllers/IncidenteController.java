@@ -70,4 +70,12 @@ public class IncidenteController {
         return new ModelAndView("redirect:backendUsuario");
     }
 	
+	@RequestMapping("listaIncidentes")
+    public ModelAndView listaIncidentes(Map<String, Object> model, HttpServletRequest request) {
+		Usuario usr = (Usuario) request.getSession(true).getAttribute("usuario");
+		List<Incidente> incidenteList = usuarioDAO.recuperarIncidentes(usr.getId());
+		model.put("incidenteList", incidenteList);
+        return new ModelAndView("listaIncidentes");
+    }
+	
 }

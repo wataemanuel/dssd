@@ -1,5 +1,7 @@
 package misClases;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -15,6 +17,8 @@ public class Usuario {
 	@NotNull
 	private String email;
 	private String dni;
+	@OneToMany(mappedBy="usuario")
+	private List<Incidente> incidentes;
 	
 	public Usuario() {
 		

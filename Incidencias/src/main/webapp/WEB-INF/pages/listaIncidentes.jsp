@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
-<title>SSA - Incidente</title>
+<title>SSA - Incidentes</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -35,49 +36,41 @@
 <div class="container">
     <div class="panel panel-success">
         <div class="panel-heading">
-			<h3 align="left">Incidente</h3>
+			<h3 align="left">Incidentes</h3>
 		</div>
 		<div class="panel-body">		
-			<form:form id="incidenteRegisterForm" class="form-horizontal" action="guardarIncidente" modelAttribute="incidenteForm">
-			<form:hidden path="id"  value="${incidenteForm.id}" />
-			<div class="form-group">
-				<form:label class="col-sm-2 control-label" path="fechaIncidente">Fecha</form:label>	
-				<form:input path="fechaIncidente" id="datepicker" size="30" />
-				<form:errors path="fechaIncidente" cssClass="error"/>
-			</div>
-			<div id="errorF" class="alert alert-danger">
- 				<strong>Error!</strong> Campo obligatorio.
-			</div>
-			<div class="form-group">
-				<form:label class="col-sm-2 control-label" path="descripcion">Descripción del incidente</form:label>	
-				<form:input path="descripcion" size="80" />
-				<form:errors path="descripcion" cssClass="error"/>
-			</div>
-			<div id="errorD" class="alert alert-danger">
- 				<strong>Error!</strong> Campo obligatorio.
-			</div>
-			<div class="form-group">
-				<form:label class="col-sm-2 control-label" path="tipoIncidente.id">Tipo de Incidente</form:label>
-				<form:select id="tipoInci" path="tipoIncidente.id" required="required" >
-				<form:option value="0">--Seleccione</form:option>
-					<c:forEach items="${tipoIncidenteList}" var="tipoIncidente">
-	   					<form:option value="${tipoIncidente.id}"
-	   					label="${tipoIncidente.descripcion}" />
-	                </c:forEach>
-				</form:select>
-				<form:errors path="tipoIncidente.id" cssClass="error"/>
-			</div>
-			<div id="errorT" class="alert alert-danger">
- 				<strong>Error!</strong> Campo obligatorio.
-			</div>
-			
-			<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input class="btn btn-success" type="submit" value="Cargar incidencia"/>
-			</div>	
-			</div>
-			</form:form>
-    	</div>
+			<c:if test="${empty incidenteList}">
+                No hay Incidentes
+            </c:if>
+            <c:if test="${not empty incidenteList}">
+                <table class="table table-hover table-bordered table-responsive">
+                    <thead style="background-color: #bce8f1;">
+                    <tr>
+                        <th>Nº de expediente</th>
+                        <th>Fecha de incidente</th>
+                        <th>Tipo</th>
+                        <th>Descripcion del incidente</th>
+                        <th>Fecha de registro</th>
+                        <th>Estado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${incidenteList}" var="incident">
+                    <tr>
+						<td><c:out value="${incident.id}" /></td>
+						<c:set var="inci" value="${incident.fechaIncidente}"/>
+						<td><c:out value="${fn:substringBefore(inci, ' ')}" /></td>
+						<td><c:out value="${incident.tipoIncidente.descripcion}" /></td>
+						<td><c:out value="${incident.descripcion}" /></td>
+						<c:set var="expe" value="${incident.fechaExpediente}"/>
+						<td><c:out value="${fn:substringBefore(expe, '.')}" /></td>
+						<td><c:out value="${incident.estado.estado}" /></td>
+					</tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </c:if>
+	   	</div>
 	</div>
 </div>
 </body>

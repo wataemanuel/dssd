@@ -1,9 +1,13 @@
 package clasesDAOimpl;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import misClases.Incidente;
 import misClases.Usuario;
 import clasesDAO.UsuarioDAO;
 
@@ -33,6 +37,14 @@ public class UsuarioDAOimpJPA extends GenericDAOimpJPA<Usuario> implements Usuar
 		consulta.setParameter("usuario", email);
 		consulta.setParameter("clave", pass);
 		Usuario resultado = (Usuario) consulta.getSingleResult();
+		return resultado;
+	}
+	
+	@Override
+	public List<Incidente> recuperarIncidentes(Serializable id) {
+		List<Incidente> resultado = null;
+		Query consulta = this.getEntityManager().createQuery("SELECT elu FROM " + this.getPersistentClass().getSimpleName() + " e JOIN e.incidentes elu WHERE e.id = " + id + "");
+		resultado = consulta.getResultList();
 		return resultado;
 	}
 

@@ -31,6 +31,8 @@
 <div class="container">
 <br>
 <a class="btn btn-primary" href="altaIncidente">Cargar incidencia</a>
+<br>
+<a class="btn btn-primary" href="listaIncidentes">Mis incidencias</a>
 </div>
 </body>
 </html>

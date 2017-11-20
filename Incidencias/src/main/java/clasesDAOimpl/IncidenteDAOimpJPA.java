@@ -11,4 +11,5 @@ public class IncidenteDAOimpJPA extends GenericDAOimpJPA<Incidente> implements I
 	public IncidenteDAOimpJPA() {
 		super(Incidente.class);
 	}
+
 }
