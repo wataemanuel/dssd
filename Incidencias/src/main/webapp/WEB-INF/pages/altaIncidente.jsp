@@ -70,7 +70,11 @@
 			<div id="errorT" class="alert alert-danger">
  				<strong>Error!</strong> Campo obligatorio.
 			</div>
-			
+			<div>
+				<button id="agregar" onclick="AgregarCampos();"> Agregar Objetos </button>
+			</div>
+			<div class="campos">
+			</div>
 			
 			
 			<div class="form-group">
@@ -112,6 +116,49 @@ $(document).ready(function(){
 	    }
 	    return true;  
 	});
+	
+	
+	var nextinput = 0;
+	 function AgregarCampos() {
+	        nextinput++;
+	        if (nextinput < 10){
+	        	campo = '<li class="objeto' + nextinput + '"><label>Objeto ' + nextinput + ':</label><input type="text" size="20" id="obj" name="obj"  /><li class="cantidad'+ nextinput+'"><label> Cantidad' + nextinput +':</label><input type="number" size="20" id="cant" name="cant" /> <a href="#" onclick="javascript:borrar(' + nextinput + ');">Borrar</a></li>';
+	            $("#campos").append(campo);
+	        }
+	        
+	    }                                                                                   //' + nextinput + '
+	    function borrar(cual) {
+	        $("li.objeto" + cual).remove();
+	        return false;
+	    }
+	    function GuardarCampos() {
+	        alert('entro');
+	        //var num = $("#num").val();
+	        //var tipo = $("#tipo").val();
+	        var objetos = document.getElementsByName("obj");
+	        var cantidades = document.getElementsByName("cant");
+	        for ( i=0; i< objetos.lenght(); i++){
+	        	alert('entro al for');
+	        	alert(objetos[i].value);
+	        	alert(cantidades[i].value);
+	         //   $.ajax({
+	          //      type: 'POST',
+	            //    url: '@Url.Action("AgregarObjetoCantidad", "Incidente")', // IncidenteController 
+
+	                // dataType: 'JSON',
+
+	              //  data: { "objeto": objetos[i].value,
+	                //		 "cantidad" : cantidades[i].value
+	               // },
+	               // success: function (response) {
+	                 //   $('#resultado').html('');
+	                   // $('#resultado').html(response);
+	               // }
+
+	           // } //).done(function (data) { });
+	        }
+	        return true;
+	    }
 });
 </script>
 </html>
