@@ -74,33 +74,4 @@
 	</div>
 </div>
 </body>
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#datepicker").datepicker({maxDate: 0});
-	$("#errorF").hide();
-	$("#errorD").hide();
-	$("#errorT").hide();
-	$("#incidenteRegisterForm").submit(function() {  
-	    if($("#fecha").val().length < 1) {
-	    	$("#errorF").show(); 
-	    	$("#errorF").hide(7000);
-	    	$("#errorF").hide("fast");
-	        return false;  
-	    }
-	    if($("#descripcion").val().length < 1) {
-	    	$("#errorD").show(); 
-	    	$("#errorD").hide(7000);
-	    	$("#errorD").hide("fast");
-	        return false;  
-	    }
-	    if($("#tipoInci").val() < 1) {
-	    	$("#errorT").show(); 
-	    	$("#errorT").hide(7000);
-	    	$("#errorT").hide("fast");
-	        return false;  
-	    }
-	    return true;  
-	});
-});
-</script>
 </html>

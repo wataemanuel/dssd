@@ -14,7 +14,7 @@
 <!-- Bootstrap JS -->
 <script src="resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="resources/js/jquery-ui.js"></script>
-<link rel="stylesheet" href="resources/js/jquery-ui.css">
+<link rel="stylesheet" href="resources/bootstrap/css/jquery-ui.css">
 
 <title>SSA - Incidente</title>
 </head>
@@ -50,7 +50,7 @@
 			</div>
 			<div class="form-group">
 				<form:label class="col-sm-2 control-label" path="descripcion">Descripción del incidente</form:label>	
-				<form:input path="descripcion" size="80" />
+				<form:input path="descripcion" id="descripcion" size="80" />
 				<form:errors path="descripcion" cssClass="error"/>
 			</div>
 			<div id="errorD" class="alert alert-danger">
@@ -71,6 +71,8 @@
  				<strong>Error!</strong> Campo obligatorio.
 			</div>
 			
+			
+			
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input class="btn btn-success" type="submit" value="Cargar incidencia"/>
@@ -83,12 +85,14 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#datepicker").datepicker({maxDate: 0});
+	$(function() {
+    	$("#datepicker").datepicker({maxDate: 0,});
+    });
 	$("#errorF").hide();
 	$("#errorD").hide();
 	$("#errorT").hide();
 	$("#incidenteRegisterForm").submit(function() {  
-	    if($("#fecha").val().length < 1) {
+	    if($("#datepicker").val().length < 1) {
 	    	$("#errorF").show(); 
 	    	$("#errorF").hide(7000);
 	    	$("#errorF").hide("fast");
