@@ -71,11 +71,10 @@
  				<strong>Error!</strong> Campo obligatorio.
 			</div>
 			<div>
-				<button id="agregar" onclick="AgregarCampos();"> Agregar Objetos </button>
+				<button id="agregar" type="button"> Agregar Objetos </button>
 			</div>
 			<div class="campos">
 			</div>
-			
 			
 			<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
@@ -83,6 +82,7 @@
 			</div>	
 			</div>
 			</form:form>
+			
     	</div>
 	</div>
 </div>
@@ -114,23 +114,25 @@ $(document).ready(function(){
 	    	$("#errorT").hide("fast");
 	        return false;  
 	    }
+	    GuardarCampos();
+	    
 	    return true;  
 	});
 	
 	
 	var nextinput = 0;
-	 function AgregarCampos() {
+	$('#agregar').click( function() {
 	        nextinput++;
 	        if (nextinput < 10){
-	        	campo = '<li class="objeto' + nextinput + '"><label>Objeto ' + nextinput + ':</label><input type="text" size="20" id="obj" name="obj"  /><li class="cantidad'+ nextinput+'"><label> Cantidad' + nextinput +':</label><input type="number" size="20" id="cant" name="cant" /> <a href="#" onclick="javascript:borrar(' + nextinput + ');">Borrar</a></li>';
-	            $("#campos").append(campo);
+	        	campo = '<li class="objeto' + nextinput + '"><label>Objeto ' + nextinput + ':</label><input type="text" size="20" min="0" id="obj" name="obj"  /><li class="cantidad'+ nextinput+'"><label> Cantidad' + nextinput +':</label><input type="number" size="20" id="cant" name="cant" /> <a href="#" onclick="javascript:borrar(' + nextinput + ');">Borrar</a></li>';
+	            $(".campos").append(campo);
 	        }
 	        
-	    }                                                                                   //' + nextinput + '
+	    } );                                                                                  //' + nextinput + '
 	    function borrar(cual) {
 	        $("li.objeto" + cual).remove();
 	        return false;
-	    }
+	    };
 	    function GuardarCampos() {
 	        alert('entro');
 	        //var num = $("#num").val();
@@ -158,7 +160,7 @@ $(document).ready(function(){
 	           // } //).done(function (data) { });
 	        }
 	        return true;
-	    }
+	    };
 });
 </script>
 </html>
