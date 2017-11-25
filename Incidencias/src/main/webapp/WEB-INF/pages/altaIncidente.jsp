@@ -39,7 +39,7 @@
 		</div>
 		<div class="panel-body">		
 			<form:form id="incidenteRegisterForm" class="form-horizontal" action="guardarIncidente" modelAttribute="incidenteForm">
-			<form:hidden path="id"  value="${incidenteForm.id}" />
+			<form:hidden path="id" value="${incidenteForm.id}" />
 			<div class="form-group">
 				<form:label class="col-sm-2 control-label" path="fechaIncidente">Fecha</form:label>	
 				<form:input path="fechaIncidente" id="datepicker" size="30" />
@@ -82,12 +82,17 @@
 			</div>	
 			</div>
 			</form:form>
-			
+			<button id="probar" type="button"> PROBAR Objetos </button>
     	</div>
 	</div>
 </div>
 </body>
 <script type="text/javascript">
+var nextinput = 0;
+function borrar(cual) {
+    $("li.objeto" + cual).remove();
+    return false;
+};
 $(document).ready(function(){
 	$(function() {
     	$("#datepicker").datepicker({maxDate: 0,});
@@ -120,47 +125,59 @@ $(document).ready(function(){
 	});
 	
 	
-	var nextinput = 0;
+	
 	$('#agregar').click( function() {
-	        nextinput++;
-	        if (nextinput < 10){
-	        	campo = '<li class="objeto' + nextinput + '"><label>Objeto ' + nextinput + ':</label><input type="text" size="20" min="0" id="obj" name="obj"  /><li class="cantidad'+ nextinput+'"><label> Cantidad' + nextinput +':</label><input type="number" size="20" id="cant" name="cant" /> <a href="#" onclick="javascript:borrar(' + nextinput + ');">Borrar</a></li>';
-	            $(".campos").append(campo);
-	        }
-	        
-	    } );                                                                                  //' + nextinput + '
-	    function borrar(cual) {
-	        $("li.objeto" + cual).remove();
-	        return false;
-	    };
-	    function GuardarCampos() {
-	        alert('entro');
-	        //var num = $("#num").val();
-	        //var tipo = $("#tipo").val();
-	        var objetos = document.getElementsByName("obj");
-	        var cantidades = document.getElementsByName("cant");
-	        for ( i=0; i< objetos.lenght(); i++){
-	        	alert('entro al for');
-	        	alert(objetos[i].value);
-	        	alert(cantidades[i].value);
-	         //   $.ajax({
-	          //      type: 'POST',
-	            //    url: '@Url.Action("AgregarObjetoCantidad", "Incidente")', // IncidenteController 
+	    nextinput++;
+	    if (nextinput <= 10){
+	    	campo = '<li class="objeto' + nextinput + '"><label>Objeto ' + nextinput + ':</label><input type="text" size="20" class="obj" name="obj" /><label> Cantidad:</label><input type="number" size="5" min="0" class="cant" name="cant" /> <button type="button" onclick="javascript:borrar(' + nextinput + ');">Borrar</a></li><li class="objeto'+ nextinput+'"><label> Descripcion:</label><input type="text" size="60" class="desc" name="desc" /></li>';
+	        $(".campos").append(campo);
+	    } 
+    });
+	    
+    function GuardarCampos() {
+        alert('entro');
+        // recorre las 3 listas, imprime en consola web
+        // clases: obj  cant  desc
+        $(".obj").each(function( index ) {
+        	  console.log( index + ": " + $( this ).val() );
+        });
+        $(".cant").each(function( index ) {
+      	  console.log( index + ": " + $( this ).val() );
+      });
+        $(".desc").each(function( index ) {
+      	  console.log( index + ": " + $( this ).val() );
+      });
+        
+        //var num = $("#num").val();
+        //var tipo = $("#tipo").val();
+        //var objetos = document.getElementsByName("obj");
+        //var cantidades = document.getElementsByName("cant");
+        //for ( i=0; i< objetos.lenght(); i++){
+        	//alert('entro al for');
+        	//alert(objetos[i].value);
+        	//alert(cantidades[i].value);
+         //   $.ajax({
+          //      type: 'POST',
+            //    url: '@Url.Action("AgregarObjetoCantidad", "Incidente")', // IncidenteController 
 
-	                // dataType: 'JSON',
+                // dataType: 'JSON',
 
-	              //  data: { "objeto": objetos[i].value,
-	                //		 "cantidad" : cantidades[i].value
-	               // },
-	               // success: function (response) {
-	                 //   $('#resultado').html('');
-	                   // $('#resultado').html(response);
-	               // }
+              //  data: { "objeto": objetos[i].value,
+                //		 "cantidad" : cantidades[i].value
+               // },
+               // success: function (response) {
+                 //   $('#resultado').html('');
+                   // $('#resultado').html(response);
+               // }
 
-	           // } //).done(function (data) { });
-	        }
-	        return true;
-	    };
+           // } //).done(function (data) { });
+        //}
+        return true;
+    };
+    
+    $('#probar').click( function() {
+	    GuardarCampos();
+    });
 });
 </script>
 </html>

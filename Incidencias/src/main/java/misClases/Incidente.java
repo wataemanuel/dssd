@@ -28,9 +28,9 @@ public class Incidente {
 	@ManyToOne(optional = false)
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
-	/*@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="incidente_id")
-	private List<ObjetoInd> objetos;*/
+	private List<ObjetoInd> objetos;
 	
 	public Incidente() {
 		
@@ -73,12 +73,12 @@ public class Incidente {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	/*public List<ObjetoInd> getObjetos() {
+	public List<ObjetoInd> getObjetos() {
 		return objetos;
 	}
 	public void setObjetos(List<ObjetoInd> objetos) {
 		this.objetos = objetos;
-	}*/
+	}
 	public TipoIncidente getTipoIncidente() {
 		return tipoIncidente;
 	}
