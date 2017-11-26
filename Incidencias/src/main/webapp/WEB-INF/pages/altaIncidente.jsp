@@ -83,14 +83,15 @@
 			</div>
 			</form:form>
 			
-			<button id="probar" type="button"> PROBAR Objetos </button>
     	</div>
 	</div>
 </div>
 </body>
 <script type="text/javascript">
+var cantobjs = 0;
 var nextinput = 0;
 function borrar(cual) {
+	cantobjs--;
     $("li.objeto" + cual).remove();
     return false;
 };
@@ -127,11 +128,11 @@ $(document).ready(function(){
 	});
 	
 	
-	
 	$('#agregar').click( function() {
-	    nextinput++;
-	    if (nextinput <= 10){
-	    	campo = '<li class="objeto' + nextinput + '"><label>Objeto ' + nextinput + ':</label><input type="text" size="20" class="obj" name="obj" /><label> Cantidad:</label><input type="number" size="5" min="0" class="cant" name="cant" /> <button type="button" onclick="javascript:borrar(' + nextinput + ');">Borrar</a></li><li class="objeto'+ nextinput+'"><label> Descripcion:</label><input type="text" size="60" class="desc" name="desc" /></li>';
+	    if (cantobjs < 10){
+			cantobjs++;
+		    nextinput++;
+	    	campo = '<li class="objeto' + nextinput + '"><label>Nombre de objeto:</label><input type="text" size="26" class="obj" name="obj" /><label> Cantidad:</label><input type="number" size="20" min="0" class="cant" name="cant" /> </li><li class="objeto'+ nextinput+'"><label> Descripcion:</label><input type="text" size="60" class="desc" name="desc" /></li><li class="objeto' + nextinput + '""><button type="button" onclick="javascript:borrar(' + nextinput + ');">Borrar</a></li>';
 	        $(".campos").append(campo);
 	    } 
     });
@@ -173,9 +174,7 @@ $(document).ready(function(){
         return true;
     };
     
-    $('#probar').click( function() {
-	    GuardarCampos();
-    });
+
 });
 </script>
 </html>
