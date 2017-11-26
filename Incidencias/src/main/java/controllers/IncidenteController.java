@@ -1,11 +1,13 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import misClases.ObjetoInd;
 import misClases.Usuario;
 import misClases.Incidente;
 import misClases.TipoIncidente;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import clasesDAO.EstadoDAO;
@@ -35,6 +38,8 @@ public class IncidenteController {
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
+	
+	private List<ObjetoInd> objetos;
 
 	public IncidenteDAO getIncidenteDAO() {
 		return incidenteDAO;
@@ -47,6 +52,7 @@ public class IncidenteController {
 	@RequestMapping("altaIncidente")
     public ModelAndView altaIncidente(Map<String, Object> model) {
 		Incidente incidente = new Incidente();
+    	objetos = new ArrayList<ObjetoInd>();
 		List<TipoIncidente> tipoIncidenteList = tipoIncidenteDAO.recuperarTodos();
 		model.put("tipoIncidenteList", tipoIncidenteList);
 		model.put("incidenteForm", incidente);
@@ -62,11 +68,16 @@ public class IncidenteController {
     		usr = usuarioDAO.recuperar(usr.getId());
     		incidenteForm.setUsuario(usr);
         	incidenteForm.setEstado(estadoDAO.recuperar(new Long(1)));
+        	/*for(ObjetoInd o : objetos) {
+        		System.out.println(o.getNombre());
+        		System.out.println(o.getCantidad());
+        		System.out.println(o.getDesripcion());
+        	}*/
+        	incidenteForm.setObjetos(objetos);
         	incidenteDAO.persistir(incidenteForm);
         } else {
         	incidenteDAO.actualizar(incidenteForm);
         }
-        //return new ModelAndView("redirect:listaUsuarios");
         return new ModelAndView("redirect:backendUsuario");
     }
 	
@@ -77,5 +88,15 @@ public class IncidenteController {
 		model.put("incidenteList", incidenteList);
         return new ModelAndView("listaIncidentes");
     }
+	
+	@RequestMapping("agregarObjetos")
+	public void agregarObjetos(@RequestParam String nom, @RequestParam int cant, @RequestParam String desc) {
+		objetos.add(new ObjetoInd(nom, cant, desc));
+	}
+
+	@ModelAttribute("objetos")
+	public List<ObjetoInd> getObjetos() {
+		return objetos;
+	}
 	
 }

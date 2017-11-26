@@ -59,7 +59,7 @@ public class FiltroSesion implements Filter {
 	}
 
 	private boolean excludeFromFilter(String path) {
-		if (path.equals("/") || path.equals("/index.jsp") || path.equals("/login") || path.equals("/altaUsuario") || path.equals("/logout") || path.startsWith("/resources")) return true;
+		if (path.equals("/") || path.equals("/index.jsp") || path.equals("/login") || path.equals("/controlarEmail") || path.equals("/controlarDNI") || path.equals("/altaUsuario") || path.equals("/guardarUsuario") || path.equals("/logout") || path.startsWith("/resources")) return true;
 		else return false;
 	}
 }

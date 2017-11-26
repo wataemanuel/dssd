@@ -82,6 +82,7 @@
 			</div>	
 			</div>
 			</form:form>
+			
 			<button id="probar" type="button"> PROBAR Objetos </button>
     	</div>
 	</div>
@@ -101,6 +102,7 @@ $(document).ready(function(){
 	$("#errorD").hide();
 	$("#errorT").hide();
 	$("#incidenteRegisterForm").submit(function() {  
+		
 	    if($("#datepicker").val().length < 1) {
 	    	$("#errorF").show(); 
 	    	$("#errorF").hide(7000);
@@ -119,9 +121,9 @@ $(document).ready(function(){
 	    	$("#errorT").hide("fast");
 	        return false;  
 	    }
-	    GuardarCampos();
+	  return  GuardarCampos();
 	    
-	    return true;  
+	   // return true;  
 	});
 	
 	
@@ -135,43 +137,39 @@ $(document).ready(function(){
     });
 	    
     function GuardarCampos() {
-        alert('entro');
-        // recorre las 3 listas, imprime en consola web
-        // clases: obj  cant  desc
-        $(".obj").each(function( index ) {
-        	  console.log( index + ": " + $( this ).val() );
-        });
-        $(".cant").each(function( index ) {
-      	  console.log( index + ": " + $( this ).val() );
-      });
-        $(".desc").each(function( index ) {
-      	  console.log( index + ": " + $( this ).val() );
-      });
-        
-        //var num = $("#num").val();
-        //var tipo = $("#tipo").val();
-        //var objetos = document.getElementsByName("obj");
-        //var cantidades = document.getElementsByName("cant");
-        //for ( i=0; i< objetos.lenght(); i++){
-        	//alert('entro al for');
-        	//alert(objetos[i].value);
-        	//alert(cantidades[i].value);
-         //   $.ajax({
-          //      type: 'POST',
-            //    url: '@Url.Action("AgregarObjetoCantidad", "Incidente")', // IncidenteController 
-
-                // dataType: 'JSON',
-
-              //  data: { "objeto": objetos[i].value,
-                //		 "cantidad" : cantidades[i].value
-               // },
-               // success: function (response) {
-                 //   $('#resultado').html('');
-                   // $('#resultado').html(response);
-               // }
-
-           // } //).done(function (data) { });
-        //}
+       var objs = [];
+       var cants = [];
+       var descs = [];
+       
+       $(".obj").each(function( index ) {
+   		 objs.push($( this ).val() );
+   	   });
+       $(".cant").each(function( index ) {
+   		 cants.push($( this ).val() );
+   	   });
+       $(".desc").each(function( index ) {
+   		 descs.push($( this ).val() );
+   	   });
+       console.log(objs);
+       console.log(typeof objs);
+       
+       for (i = 0; i < objs.length; i++) {
+    	   $.ajax({
+    	       type: 'POST',
+    	       url: 'agregarObjetos',
+    	       dataType: 'JSON',
+    	       data: { "nom": objs[i],
+    	       		   "cant": cants[i],
+    	       		   "desc": descs[i]
+    	       },
+           	   success: function(data) {
+           		   console.log("respuesta")
+           	   }
+            });
+    	} 
+       
+       
+       
         return true;
     };
     

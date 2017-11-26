@@ -3,6 +3,7 @@ package misClases;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Incidente {
 	@ManyToOne(optional = false)
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinColumn(name="incidente_id")
 	private List<ObjetoInd> objetos;
 	
